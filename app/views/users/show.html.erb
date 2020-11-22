@@ -1,0 +1,21 @@
+<div class="users">
+			<h4>名前</h4>
+      <%= @user.name %>
+      <h4>自己紹介</h4>
+      <%= @user.introduction %>
+
+<div class="follower">
+      <%= link_to followers_user_path(@user) do %>
+          <h5 style="color: black;">フォロワー<%= @user.followers.count %>人</h5>
+      <% end %>
+  </div>
+  <div class="follow">
+      <%= link_to following_user_path(@user) do %>
+                <h5 style="color: black;">フォロー<%= @user.following.count %>人</h5>
+      <% end %>
+  </div>
+  <div>
+      <%= render "follow_form" %>
+  </div>
+
+  <%= render "layouts/post_index" %>

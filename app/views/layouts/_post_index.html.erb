@@ -1,0 +1,19 @@
+<% @posts.each do |post| %>
+<div class="card">
+  <div class="card-img-top">
+    <%= attachment_image_tag post, :image, :fill, 250, 200, format: 'jpg' %>
+  </div>
+    <div class="card-body">
+    <h4><%= post.user.name %></h4>
+    <small>タイトル</small>
+    <h4 class="card-title"><%= post.title %></h4>
+    <small>質問</small>
+    <p class="card-text"><%= post.content %></p>
+    </div>
+  <ul>
+    <%= link_to "#{post.answers.count} 件の回答", post_path(post.id) %>
+  </ul>
+<% end %>
+</div>
+<%= paginate @posts %>
+</div>

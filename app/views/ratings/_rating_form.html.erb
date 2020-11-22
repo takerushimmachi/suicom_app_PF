@@ -1,0 +1,9 @@
+<%= form_for [@post, answer, Rating.new] do |f| %>
+	  <div id="star-<%= answer.id %>">
+	  	<%= f.hidden_field :ratet %>
+	  </div>
+	  	<%= f.submit "送信" %>
+	  	<% end %>
+	  <script>
+	  	$("#star-<%= answer.id %>").raty({number:5, starOff:'<%= asset_path("img/star-off.png") %>', starOn:'<%= asset_path("img/star-on.png") %>',scoreName: 'rating[ratet]'})
+	  </script>

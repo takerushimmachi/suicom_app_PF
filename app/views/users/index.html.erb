@@ -1,0 +1,25 @@
+<div class="users-index">
+  <div class="container">
+    <h3 class="users-header">他のユーザー</h3>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ユーザー</th>
+      <th scope="col">紹介文</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.introduction %></td>
+      <td><%= link_to "詳細", user_path(user), class: "user_#{user.id}" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  </div>
+</div>

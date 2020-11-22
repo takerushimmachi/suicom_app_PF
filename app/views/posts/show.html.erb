@@ -1,0 +1,72 @@
+
+<div class="container">
+	<div class="card">
+		<div class="card-img-top">
+		    <%= attachment_image_tag @post, :image, :fill, 250, 200, format: 'jpg' %>
+		</div>
+		  <div class="card-body">
+		  		<small>名前</small>
+		    <h4><%= @post.user.name %></h4>
+		    	<small>タイトル</small>
+		    <h4 class="card-title"><%= @post.title %></h4>
+		    	<small>質問</small>
+		    <p class="card-text"><%= @post.content %></p>
+		  </div>
+	</div>
+</div>
+
+	<h3>回答一覧</h3>
+	<% @post.answers.each do |answer| %>
+	 <ul>
+		<li>
+			（回答）<%= answer.answer %>
+		</li>
+	 </ul>
+		<% if current_user == @post.user && answer.rating.nil? %>
+			<%= form_for [@post, answer, Rating.new] do |f| %>
+			  <div id="star-<%= answer.id %>">
+			  </div>
+			  <script>
+			  	$("#star-<%= answer.id %>").raty({
+			  		number: 5,
+			  		starOff: '<%= asset_path("img/star-off.png") %>',
+			  		starOn:  '<%= asset_path("img/star-on.png") %>',
+			  		scoreName: 'rating[ratet]'
+			  	})
+			  </script>
+			  <%= f.submit "送信" %>
+			<% end %>
+		<% elsif answer.present? && answer.rating.present? %>
+			  <div id="star-<%= answer.id %>">
+			  </div>
+			  <script>
+
+			  	$("#star-<%= answer.id %>").raty({
+			  		size: 36,
+			  		starOff: '<%= asset_path("img/star-off.png") %>',
+			  		starOn:  '<%= asset_path("img/star-on.png") %>',
+			  		starHalf:  '<%= asset_path("img/star-half.png") %>',
+			  		half: true,
+			  		readOnly: true,
+			  		score: "<%= answer.rating.ratet.to_i %>"
+			  	})
+			  </script>
+		<% end %>
+	<% end %>
+
+	<% if current_user == @post.user %>
+		<%= link_to "投稿削除", post_path(@post), method: :delete, data: {confirm: "削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_post_#{@post.id}" %>
+	<% end %>
+</div>
+</table>
+<% if @post.user != current_user %>
+<%= form_for [@post, @answer] do |f| %>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= f.text_area :answer, rows:'5', class: "form-control",placeholder: "回答をここに" %>
+    </div>
+  </div>
+  <%= f.submit "回答する", class: "btn btn-lg btn-base-1 mt-4" %>
+<% end %>
+<% else %>
+<% end %>
