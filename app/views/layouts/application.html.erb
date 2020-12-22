@@ -36,6 +36,17 @@
           <li class="nav-item">
             <%= link_to '新規登録', new_user_registration_path %>
           </li>
+
+          <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+    MENU
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <li><a class="dropdown-item" href="#/users/sign_out">ログアウト</a></li>
+    <li><a class="dropdown-item" href="#/users">他のユーザー</a></li>
+    <li><a class="dropdown-item" href="#/users/mypage">マイページ</a></li>
+  </ul>
+</div>
       <% end %>
     </ul>
   </div>

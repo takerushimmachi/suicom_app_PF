@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 2020_11_09_215711) do
     t.text "answer"
     t.integer "user_id"
     t.integer "post_id"
-    t.integer "rate", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
