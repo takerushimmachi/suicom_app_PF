@@ -5,16 +5,26 @@
 
 <div class="container">
 	<h4>
-		ようこそ<a herf="users/mypage"></a>さん
+		<% if user_signed_in? %>
+          <div style="margin-top: 15px; color: #ffffff;">
+          	<p>	ようこそ
+          		<%= link_to mypage_users_path do %>
+          		<%= current_user.name %>
+          		<% end %>
+          		さん。
+      		</p>
+      	  </div>
+        <% end %>
 	</h4>
 	<div class="row center-block">
 		<div class="card" style="width: 22rem;">
   			<div class="card-body">
-				<h4 class="card-title">ようこそSuicomへ。</h4>
-				<p class="card-text"></p>
-				<a href="#/users/mypage" class="btn btn-primary">マイページ</a>
+					<h4 class="card-title">ようこそSuicomへ。</h4>
+					<p class="card-text"></p>
+					<div class="btn btn-primary">
+						<%= link_to 'マイページ', mypage_users_path %>
+					</div>
  		    </div>
 		</div>
-
 	</div>
 </div>
