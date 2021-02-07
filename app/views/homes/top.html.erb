@@ -6,7 +6,7 @@
 <div class="container">
 	<h4>
 		<% if user_signed_in? %>
-          <div style="margin-top: 15px; color: #ffffff;">
+          <div style="margin-top: 30px; color: #ffffff;">
           	<p>	ようこそ
           		<%= link_to mypage_users_path do %>
           		<%= current_user.name %>
@@ -25,6 +25,7 @@
 						<%= link_to 'マイページ', mypage_users_path %>
 					</div>
  		    </div>
+ 		    <%= render "layouts/post_index" %>
 		</div>
 	</div>
 </div>
